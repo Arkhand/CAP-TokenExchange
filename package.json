@@ -1,44 +1,40 @@
 {
-    "name": "testtokenexchange",
-    "version": "0.0.1",
-    "private": true,
-    "description": "",
-    "keywords": [
-        "ui5",
-        "openui5",
-        "sapui5"
-    ],
-    "main": "webapp/index.html",
-    "dependencies": {},
-    "devDependencies": {
-        "@ui5/cli": "^3.0.0",
-        "@sap/ux-ui5-tooling": "1",
-        "@sap/ux-specification": "UI5-1.138",
-        "@sap-ux/ui5-middleware-fe-mockserver": "2",
-        "@sap/ui5-builder-webide-extension": "^1.1.8",
-        "ui5-task-zipper": "^0.5.0",
-        "mbt": "^1.2.18"
+  "name": "ztesttoken",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.1",
+    "@cap-js/hana": "^1",
+    "@sap-cloud-sdk/http-client": "^4.0.2",
+    "@sap-cloud-sdk/mail-client": "^3.24.0",
+    "@sap/cds": "^8",
+    "@sap/cds-hana": "^2",
+    "@sap/textbundle": "^5.4.0",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.9.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
+    "cap-js-mockdata": "^0.0.3",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "bind": "cds bind -2 ztesttoken-auth && cds bind -2 ztesttoken-connectivity && cds bind -2 ztesttoken-destination-service && cds bind -2 CFDB_CCRT",
+    "local": "cds watch --livereload false --profile hybrid",
+    "watch": "cds watch"
+  },
+  "cds": {
+    "requires": {
+      "auth": "xsuaa"
     },
-    "scripts": {
-        "start": "echo \\\"This application was generated with a local metadata file and does not reference a live server. Please add the required server configuration or start this application with mock data using the target: npm run start-mock\\\"",
-        "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#combmstesttokenexchange-tile\"",
-        "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
-        "deploy": "fiori cfDeploy",
-        "deploy-config": "fiori add deploy-config",
-        "start-noflp": "echo \\\"This application was generated with a local metadata file and does not reference a live server. Please add the required server configuration or start this application with mock data using the target: npm run start-mock\\\"",
-        "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#combmstesttokenexchange-tile\"",
-        "start-variants-management": "echo \\\"This application was generated with a local metadata file and does not reference a live server. Please add the required server configuration or start this application with mock data using the target: npm run start-mock\\\"",
-        "build:cf": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateCachebusterInfo",
-        "build:mta": "rimraf resources mta_archives && mbt build",
-        "undeploy": "cf undeploy combmstesttokenexchange --delete-services --delete-service-keys --delete-service-brokers"
-    },
-    "sapux": true,
-    "sapuxLayer": "CUSTOMER_BASE",
-    "ui5": {
-        "dependencies": [
-            "@sap/ui5-builder-webide-extension",
-            "ui5-task-zipper",
-            "mbt"
-        ]
+    "cov2ap": {
+      "plugin": true
     }
+  }
 }

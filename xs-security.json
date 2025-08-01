@@ -1,7 +1,36 @@
 {
-  "xsappname": "combmstesttokenexchange",
+  "xsappname": "ztesttoken-auth",
   "tenant-mode": "dedicated",
-  "description": "Security profile of called application",
-  "scopes": [],
-  "role-templates": []
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ],
+  "authorities-inheritance": false,
+  "oauth2-configuration": {
+    "credential-types": [
+      "binding-secret",
+      "instance-secret"
+    ],
+    "grant-types": [
+      "authorization_code",
+      "client_credentials",
+      "password",
+      "refresh_token",
+      "user_token",
+      "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "urn:ietf:params:oauth:grant-type:token-exchange"
+    ]
+  }
 }
